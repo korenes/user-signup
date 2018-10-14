@@ -1,0 +1,14 @@
+form {
+    box-sizing: 300px;
+}
+
+.textlabels input {
+    display: inline-block;
+    box-align: right;
+    margin-left: 120px;
+    background-color: aqua;
+}
+
+.textlabels label {
+    position: absolute;
+}
