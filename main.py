@@ -20,12 +20,15 @@ def user_signup():
 
     if (len(username) <3) or (len(username) >20) or (" " in username):
         username_error = "No space in username.  Please limit your characters to 3 or more characters up to 20."
+        return render_template("index.html", username=username, username_error=username_error)
 
     if (len(pswd) <3) or (len(pswd) >20) or (" " in pswd):
         pswd_error = "No space in password.  Please limit your characters to 3 or more characters up to 20."
+        return render_template("index.html", username=username, pswd_error=pswd_error)
 
     if (pswd != verify_pswd) or (verify_pswd == ""):
         pswd_match_error = "Please try again.  Passwords do not match."
+        return render_template("index.html", username=username, pswd_match_error=pswd_match_error)
 
     if (len(email) <3) or (len(email) >20) or (" " in email) and ("@" not in email) and ("." not in email):
         email_error = "No space in email allowed.  Please limit your characters to 3 or more characters up to 20."
@@ -38,6 +41,7 @@ def user_signup():
 
 @app.route("/welcome", methods=["GET", "POST"])
 def welcome():
-    return render_template("welcome.html")
+    username = request.args.get("username")
+    return render_template("welcome.html", username=username)
 
 app.run()
